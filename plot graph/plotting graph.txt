@@ -1,0 +1,22 @@
+c1 = data2.VarName1;
+c2 = data2.VarName2;
+c3 = data2.VarName3;
+plot(c1,c2,c1,c3)
+xlabel('time(sec)');
+ylabel('magnitude(meter)');
+legend('First data set', 'Second data set');
+
+n1 = max(c2);
+fprintf('Max: %d\n',n1)
+n2 = min(c2);
+fprintf('Min: %d\n',n2)
+n3 = mean(c2);
+fprintf('Mean: %d\n',n3)
+n4 = std(c2);
+fprintf('Standard Deviation: %d\n',n1)
+n5 = median(c2);
+fprintf('Median: %d\n',n5)
+n6 = mode(c2);
+fprintf('Mode: %d\n',n6)
+n7 = numel(c2);
+fprintf('Number of data points: %d\n',n7)
