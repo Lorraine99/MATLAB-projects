@@ -1,0 +1,9 @@
+%set matrix
+A = A1{:,:};
+B = B1{:,:};
+A = 1.05*A;
+
+%solve x
+x = A\B;
+
+display(round(x,3));

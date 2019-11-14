@@ -1,0 +1,9 @@
+%set matrix
+A=A1{:,:};
+B=B1{:,:};
+
+[L,U]=lu(A);
+Z=L\B;
+x=U\Z;
+
+display(round(x,3));

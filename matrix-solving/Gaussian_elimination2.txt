@@ -1,0 +1,30 @@
+n = height(A1);
+A=A1{:,:};
+B=B1{:,:};
+x = zeros(n,1);
+
+%increase the resister by 5%
+A = 1.05 * A;
+
+%elinimation
+s = 0;
+for j = 1:n
+    for i = s+1:n-1
+        ratio = A(i+1,j)/A(j,j);
+        A(i+1,:) = A(i+1,:)-ratio*A(j,:);
+        B(i+1) = B(i+1)-ratio*B(j);
+    end
+    s=s+1;
+end
+
+%substitution
+x(n) = B(n)/A(n,n);
+for i = n-1:-1:1
+    sum = 0;
+    for j = i+1:n
+        sum = sum+A(i,j)*x(j);
+    end
+    x(i) = (B(i)-sum)/A(i,i);
+end
+
+disp(round(x,3));
