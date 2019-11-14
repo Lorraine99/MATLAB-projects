@@ -1,0 +1,10 @@
+syms x y;
+f1 = [4.*x^2+y^2-13, x^2+y^2-10];
+f2 = [2.*x-y-exp(-x),-x+2.*y-exp(-y)];
+var=[x,y];
+init = [1,1];
+r = newrap(f1,var,init);
+r1 = r(1);
+r2 = r(2);
+disp("x = " + r1);
+disp("y = " + r2);

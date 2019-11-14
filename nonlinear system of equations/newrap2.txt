@@ -1,0 +1,29 @@
+function r = newrap(f,var,init)
+    tol = 0.005;
+    r = 0;
+    c = 0;
+    while(tol >= 0.005)
+        if c == 0
+            eval_f = subs(f,var,init);
+            df = double(eval_f);
+            jaco = jacobian(f,var);
+            jaco = inv(jaco);
+            eval_jaco = subs(jaco,var,init);
+            dj = double(eval_jaco);
+            r = init-(dj*df')';
+            c = c+1;
+        else
+            prev_r = r;
+            eval_f = subs(f,var,prev_r);
+            df = double(eval_f);
+            jaco = jacobian(f,var);
+            jaco = inv(jaco);
+            eval_jaco = subs(jaco,var,prev_r);
+            dj = double(eval_jaco);
+            r = prev_r-(dj*df')';
+            tol = abs((r-prev_r)/r);
+            c = c+1;
+        end
+    end
+    disp("number of iterations: " + c);
+end

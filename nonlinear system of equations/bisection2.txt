@@ -1,0 +1,43 @@
+prompt = 'Enter the value of resistor: ';
+R = input(prompt);
+
+a = -200;
+b = 0;
+if R > 100
+    a = 0;
+    b = 850;
+end
+
+% syms T;
+count = 0;
+temp = 0;
+m = (a+b)/2;
+f_a = fun(a,R);
+f_b = fun(b,R);
+%for testing only
+if f_a*f_b > 0
+    disp("error");
+    return;
+end
+
+tol = 0.001;
+while tol >= 0.001
+    f_a = fun(a,R);
+    f_b = fun(b,R);
+    prev = m;
+    m = (a+b)/2;
+    f_m = fun(m,R);
+    if f_a*f_m < 0
+        b = m;
+    elseif f_m == 0
+        temp = m;
+    else
+        a = m;
+    end
+    if count > 0
+       tol = abs((m-prev)/m);
+    end
+    count = count+1;
+end
+disp("number of iterations: " + count);
+disp("temperature: " + m);
